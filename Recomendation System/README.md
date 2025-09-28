@@ -1,7 +1,7 @@
 # Аналитический кейс на примере интернет-магазина компьютерных игр
 
 [control_model.ipynb](control_model.ipynb)\
-[HTML](http://htmlpreview.github.io/?https://github.com/ilyaapa/portfolio/blob/main/Computer%20Game%20Online%20Store/p05_computer_game_online_store.html)
+[HTML](http://htmlpreview.github.io/?https://github.com/ilyaapa/map/blob/main/Recomendation%20System/control_model.html)
 
 
 ## Описание проекта
