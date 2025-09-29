@@ -4,7 +4,7 @@
 
 | Наименование проекта | Описание | Стек |
 |-----------|----------|----------|
-| [Реомендательная система](https://github.com/ilyaapa/map/tree/main/Recomendation%20System) | Обучение ML-моделей рекомендательной системы, моделирование A/B-теста | python, pandas, sqlalchemy, nltk, sklearn, catboost, transformers, torch, fastapi, pydantic, hashlib, loguru |
+| [Рекомендательная система](https://github.com/ilyaapa/map/tree/main/Recomendation%20System) | Обучение ML-моделей рекомендательной системы, моделирование A/B-теста | python, pandas, sqlalchemy, nltk, sklearn, catboost, transformers, torch, fastapi, pydantic, hashlib, loguru |
 
 
 
