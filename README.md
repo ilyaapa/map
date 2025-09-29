@@ -3,7 +3,7 @@
 ## Проекты по машинному обучению (Karpov.Courses)
 
 | Наименование проекта | Описание | Стек |
-|-----------|----------|----------|
+|----------------------|----------|------|
 | [Рекомендательная система постов в социальной сети](https://github.com/ilyaapa/map/tree/main/Recomendation%20System) | Обучение ML-моделей рекомендательной системы, моделирование A/B-теста | python, pandas, sqlalchemy, nltk, sklearn, catboost, transformers, torch, fastapi, pydantic, hashlib, loguru |
 
 
@@ -11,7 +11,7 @@
 ## Проекты по аналитике данных (Яндекс Практикум)
 
 | Наименование проекта | Описание | Стек |
-|----------|----------|----------|
+|----------------------|----------|------|
 | [Аналитический кейс на примере интернет-магазина компьютерных игр](https://github.com/ilyaapa/portfolio/tree/main/Computer%20Game%20Online%20Store) | Выявление закономерностей, определяющих популярность компьютерных игр у покупателей. | python, pandas, numpy, matplotlib, seaborn, scipy |
 | [Исследование рынка заведений общественного питания Москвы](https://github.com/ilyaapa/portfolio/tree/main/Catering%20Research) | Разработка рекомендаций по открытию нового заведения на основе анализа данных о заведениях общественного питания Москвы. | python, pandas, numpy, matplotlib, seaborn, plotly, folium |
 | [Анализ оттока клиентов банка](https://github.com/ilyaapa/portfolio/tree/main/Customer%20Churn) | Анализ данных клиентов банка с целью выявления признаков оттока, сегментация клиентов для проведения маркетинговых акций, разработка мероприятий по удержанию клиентов. | python, pandas, numpy, math, matplotlib, seaborn, phik, scipy |
