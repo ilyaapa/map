@@ -28,10 +28,10 @@ class Response(BaseModel):
     recommendations: List[PostGet]
 
 engine = create_engine(
-    "postgresql://robot-startml-ro:pheiph0hahj1Vaif@"
-    "postgres.lab.karpov.courses:6432/startml"
+    # настройки удалены
 )
 
+# Загрузка таблицы по частям
 def batch_load_sql(query: str):
     conn = engine.connect().execution_options(stream_results=True)
     chunks = []
@@ -41,11 +41,13 @@ def batch_load_sql(query: str):
     conn.close()
     return pd.concat(chunks, ignore_index=True)
 
+# Группа юзера
 def get_exp_group(user_id: int) -> str:
     hash_str = hashlib.md5((str(user_id) + SALT).encode('utf-8')).hexdigest()
     hash_int = int(hash_str, 16)
     return "test" if (hash_int % 100) < (GROUP_SPLIT_RATIO * 100) else "control"
 
+# Путь до модели
 def get_model_path(path: str) -> str:
     if os.environ.get("IS_LMS") == "1":
         if path.endswith('_control'):
@@ -53,10 +55,11 @@ def get_model_path(path: str) -> str:
         elif path.endswith('_test'):
             return '/workdir/user_input/model_test'
         else:
-            return '/workdir/user_input/model'  # fallback на случай, если не совпало
+            return '/workdir/user_input/model'  # fallback на случай, если путь не совпал
     else:
         return path
 
+# Загрузка постов с лайками
 def load_liked_posts():
     logger.info('loading liked posts')
     engine.dispose()
@@ -65,18 +68,21 @@ def load_liked_posts():
         FROM public.feed_data
         WHERE action = 'like'""")
 
+# Загрузка контрольной модели
 def load_control_model():
-    model_path = get_model_path("C:/Users/EliteBook/kc/m_2_ml/l22_final_project_2/final_solution_m4/model_control")
+    model_path = get_model_path("C:/Users/model_control")
     loaded_model = CatBoostClassifier()
     loaded_model.load_model(model_path)
     return loaded_model
 
+# Загрузка тестовой модели
 def load_test_model():
-    model_path = get_model_path("C:/Users/EliteBook/kc/m_2_ml/l22_final_project_2/final_solution_m4/model_test")
+    model_path = get_model_path("C:/Users/model_test")
     loaded_model = CatBoostClassifier()
     loaded_model.load_model(model_path)
     return loaded_model
 
+# Загрузка фичей для контрольной группы
 def load_control_features(liked_posts):
     logger.info('loading posts features')
     engine.dispose()
@@ -94,6 +100,7 @@ def load_control_features(liked_posts):
 
     return liked_posts, posts_features, users_features
 
+# Загрузка фичей для тестовой группы
 def load_test_features(liked_posts):
     logger.info('loading posts features')
     engine.dispose()
@@ -126,6 +133,7 @@ logger.info('loading test features')
 test_features = load_test_features(liked_posts)
 logger.info('service is up and running')
 
+# Построение рекомендаций для контрольной группы
 def get_control_recommendations(id: int, time: datetime, limit: int):
     liked_posts, posts_features, users_features = control_features
 
@@ -161,6 +169,7 @@ def get_control_recommendations(id: int, time: datetime, limit: int):
         }) for i in recommended_posts
     ]
 
+# Построение рекомендаций для тестовой группы
 def get_test_recommendations(id: int, time: datetime, limit: int):
     liked_posts, posts_features, users_features = test_features
 
@@ -197,6 +206,7 @@ def get_test_recommendations(id: int, time: datetime, limit: int):
         }) for i in recommended_posts
     ]
 
+# endpoint
 @app.get("/post/recommendations/", response_model=Response)
 def recommended_posts(id: int, time: datetime, limit: int = 10) -> Response:
     exp_group = get_exp_group(id)
