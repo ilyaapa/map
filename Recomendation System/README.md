@@ -23,7 +23,6 @@
 
 - python
 - pandas
-- numpy
 - sqlalchemy
 - nltk
 - sklearn
